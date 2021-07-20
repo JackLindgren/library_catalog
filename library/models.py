@@ -20,7 +20,7 @@ class Author(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     birth_date = models.DateField()
-    death_date = models.DateField(blank=True)
+    death_date = models.DateField(null=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
