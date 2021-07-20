@@ -1,0 +1,18 @@
+<h1>Create a new Book</h1>
+
+<form action="{% url 'library:add_book' %}" method="post">
+{% csrf_token %}
+        Author: <select name="author" required>
+            {% for author in authors %}
+            <option value="{{author.id}}">{{author.first_name}} {{author.last_name}}</option>
+            {% endfor %}
+        </select><br>
+        Title: <input type="text" name="title" required><br>
+        Publication date: <input type="date" name="publication_date" required><br>
+        Language: <select name="language" required>
+            {% for language in languages %}
+            <option value="{{language.id}}">{{language}}</option>
+            {% endfor %}
+        </select><br>
+    <input type="submit">
+</form>

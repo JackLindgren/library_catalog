@@ -6,14 +6,14 @@ class User(models.Model):
 
 
 class Language(models.Model):
-    language = models.TextField(max_length=30)
+    language = models.TextField(max_length=30, unique=True)
 
     def __str__(self):
         return self.language
 
 
 class Country(models.Model):
-    country = models.TextField(max_length=30)
+    country = models.TextField(max_length=30, unique=True)
 
     def __str__(self):
         return self.country
