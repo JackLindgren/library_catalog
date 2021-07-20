@@ -1,0 +1,15 @@
+<h1>Create a new Author</h1>
+
+<form action="{% url 'library:add_author' %}" method="post">
+{% csrf_token %}
+        First name: <input type="text" name="first_name"><br>
+        Last name: <input type="text" name="last_name" required><br>
+        Birth date: <input type="date" name="birth_date" required><br>
+        Death date: <input type="date" name="death_date"><br>
+        Country: <select name="country" required>
+            {% for country in countries %}
+            <option value="{{country.id}}">{{country}}</option>
+            {% endfor %}
+        </select><br>
+    <input type="submit">
+</form>
