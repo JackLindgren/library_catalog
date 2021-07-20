@@ -8,6 +8,9 @@ class User(models.Model):
 class Language(models.Model):
     language = models.TextField(max_length=30)
 
+    def __str__(self):
+        return self.language
+
 
 class Country(models.Model):
     country = models.TextField(max_length=30)

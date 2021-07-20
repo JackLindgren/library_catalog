@@ -14,6 +14,15 @@ class AuthorListView(generic.ListView):
         return Author.objects.order_by('last_name')
 
 
+class BookDetailView(generic.DetailView):
+    model = Book
+    template_name = 'library/book_detail.html'
+
+
+def home_page(request):
+    return render(request, 'library/home.html')
+
+
 def books_by_author(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
     books = Book.objects.filter(author=author)
