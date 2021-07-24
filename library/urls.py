@@ -9,5 +9,6 @@ urlpatterns = [
     path('authors/<int:author_id>', views.books_by_author, name='authors_works'),
     path('books/<int:pk>', views.BookDetailView.as_view(), name='book_detail'),
     path('add_author', views.add_author, name='add_author'),
-    path('add_book', views.add_book, name='add_book')
+    path('add_book', views.add_book, name='add_book'),
+    path('upload_authors', views.upload_authors, name='upload_authors')
 ]

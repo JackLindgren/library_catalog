@@ -1,0 +1,14 @@
+<h1>Upload a CSV of author profiles</h1>
+<ul>
+    <li>first_name</li>
+    <li>last_name</li>
+    <li>birth_date</li>
+    <li>death_date (optional)</li>
+    <li>country</li>
+</ul>
+
+<form action="{% url 'library:upload_authors' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" id="author_file" name="author_file">
+    <button type="submit">Upload</button>
+</form>
