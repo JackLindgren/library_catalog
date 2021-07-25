@@ -1,0 +1,14 @@
+<h1>{{language.language}}</h1>
+
+{% if books %}
+<h2>Works in {{language.language}}</h2>
+<ul>
+    {% for book in books %}
+    <li><a href="{% url 'library:book_detail' book.id %}">{{ book.title }}</a> - {{book.author.first_name}} {{book.author.last_name}} - ({{ book.publication_date.year }})</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No books to display</p>
+{% endif %}
+
+<a href="{% url 'library:add_book' %}">Add a book</a>

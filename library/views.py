@@ -31,12 +31,30 @@ def home_page(request):
 
 def books_by_author(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
-    books = Book.objects.filter(author=author)
+    books = Book.objects.filter(author=author).order_by('publication_date')
     context = {
         'author': author,
         'books': books
     }
     return render(request, 'library/author_books.html', context)
+
+
+class LanguageListView(generic.ListView):
+    template_name = 'library/languages.html'
+    context_object_name = 'language_list'
+
+    def get_queryset(self):
+        return Language.objects.order_by('language')
+
+
+def books_by_language(request, language_id):
+    language = get_object_or_404(Language, pk=language_id)
+    books = Book.objects.filter(language=language).order_by('author', 'publication_date')
+    context = {
+        'language': language,
+        'books': books
+    }
+    return render(request, 'library/language_books.html', context)
 
 
 def add_author(request):
