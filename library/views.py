@@ -95,3 +95,21 @@ def upload_authors(request):
         return HttpResponseRedirect(reverse('library:authors'))
     else:
         return render(request, 'library/author_upload.html')
+
+
+def upload_books(request):
+    if request.method == 'POST':
+        book_file = request.FILES['book_file']
+        book_data = book_file.read().decode('UTF-8')
+        io_string = io.StringIO(book_data)
+        reader = csv.DictReader(io_string)
+        for row in reader:
+            new_book = Book()
+            new_book.title = row['title']
+            new_book.publication_date = datetime.strptime(row['publication_date'], YMD_FORMAT).date()
+            new_book.language, created = Language.objects.get_or_create(language=row['language'])
+            new_book.author = Author.objects.get(id=row['author_id'])
+            new_book.save()
+        return HttpResponseRedirect(reverse('library:authors'))
+    else:
+        return render(request, 'library/book_upload.html')
